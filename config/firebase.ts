@@ -4,7 +4,7 @@ import path from 'path';
 
 
 // const serviceAccount = require('../dogator-chat-feaure-firebase-adminsdk-fbsvc-ac501a980b.json');
-const serviceAccount = require(path.join(__dirname, '../dogator-chat-feaure-firebase-adminsdk-fbsvc-ac501a980b.json'));
+const serviceAccount = require( '/etc/secrets/dogator-chat-feaure-firebase-adminsdk-fbsvc-ac501a980b.json');
 
 if (!admin.apps.length) {
   admin.initializeApp({
