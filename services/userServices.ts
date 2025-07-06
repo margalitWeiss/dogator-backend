@@ -9,7 +9,7 @@ export const getUserByEmail = async (email: string) => {
 };
 export const updateLastActive = async (email: string) => {
 
-        const query = "UPDATE Users SET last_active = NOW() WHERE email = ?";
+        const query = "UPDATE users SET last_active = NOW() WHERE email = ?";
         
         try {
             await pool.execute(query, [email]);
