@@ -1,0 +1,8 @@
+.env
+*.log
+dogator-78077-firebase-adminsdk-fbsvc-2a06a986ae.json
+firebase-adminsdk-2a06a986ae.json
+chat-dogator-78077-firebase-adminsdk-2a06a986ae.json
+dist
+node_modules
+dogator-chat-feaure-firebase-adminsdk-fbsvc-ac501a980b.json
