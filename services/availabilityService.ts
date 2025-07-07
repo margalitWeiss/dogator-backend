@@ -30,19 +30,19 @@ export async function deleteAvailabilitySlots(slotIds: string[],userId: string) 
   console.log("Attempting to delete slots with IDs:", slotIds, "for User ID:", userId);
   try {
     const [result] = await pool.query( 
-      `DELETE FROM AvailabilitySlots WHERE slot_id IN (?) AND user_id = ?`,
+      `DELETE FROM availabilityslots WHERE slot_id IN (?) AND user_id = ?`,
       [slotIds, userId] 
     );
     console.log(`Successfully deleted ${result} rows.`);
     return result;
   } catch (error) {
-    console.error("Error during deleteAvailabilitySlots:", error);
+    console.error("Error during deleteavailabilitySlots:", error);
     throw error; 
   }
 }
 export async function createAvailabilitySlot(slotData: AvailabilitySlotInput,userId: string) {
     const [result] = await pool.query(
-      `INSERT INTO AvailabilitySlots (user_id, day_of_week, start_time, end_time, specific_date, is_recurring, slot_id)
+      `INSERT INTO availabilityslots (user_id, day_of_week, start_time, end_time, specific_date, is_recurring, slot_id)
        VALUES (?, ?, ?, ?, ?, ?, UUID())`,
       [userId, slotData.day_of_week, slotData.start_time, slotData.end_time, slotData.specific_date, slotData.is_recurring]
     )as ResultSetHeader[];
@@ -54,7 +54,7 @@ export async function updateAvailabilitySlot(slotData: AvailabilitySlotInput,use
     throw new Error('slot_id is required for updating an availability slot.');
   }
   const [result] = await pool.query(
-    `UPDATE AvailabilitySlots
+    `UPDATE availabilityslots
      SET day_of_week = ?, start_time = ?, end_time = ?, specific_date = ?, is_recurring = ?
      WHERE slot_id = ? AND user_id = ?`,
     [
@@ -75,7 +75,7 @@ export async function getAvailabilitySlotsByUserId(
 ): Promise<AvailabilitySlotDB[]> {
   const [rows] = await pool.query(
     `SELECT slot_id, user_id, day_of_week, start_time, end_time, specific_date, is_recurring, created_at
-     FROM AvailabilitySlots
+     FROM availabilityslots
      WHERE user_id = ?`,
     [userId]
   );
@@ -89,7 +89,7 @@ export const getUserByEmail = async (email: string) => {
 };
 export const updateLastActive = async (email: string) => {
 
-        const query = "UPDATE Users SET last_active = NOW() WHERE email = ?";
+        const query = "UPDATE users SET last_active = NOW() WHERE email = ?";
         
         try {
             await pool.execute(query, [email]);
@@ -101,7 +101,7 @@ export const updateLastActive = async (email: string) => {
 
     export const updateFcmToken = async (userId: string, fncToken: string) => {
 
-        const query = "UPDATE Users SET Fcm_token = ? WHERE user_id = ?";
+        const query = "UPDATE users SET Fcm_token = ? WHERE user_id = ?";
     
         try {
             await pool.execute(query, [fncToken, userId]);

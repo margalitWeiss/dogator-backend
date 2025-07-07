@@ -23,7 +23,7 @@ import redis from "../utils/redisClient";
 
 
 export const login = async (req: Request, res: Response): Promise<void> => {
-    const { email, password,Fcm_token,role='user' } = req.body;
+    const { email, password,Fcm_token } = req.body;
 
     if (!email || !password) {
          sendErrorResponse(res, 400, "Missing details", "Missing email or password");
@@ -47,12 +47,12 @@ export const login = async (req: Request, res: Response): Promise<void> => {
              return;
         }
        await updateLastActive(email);
-        const token = generateToken({ user_id: user.user_id, email,role });
+        const token = generateToken({ user_id: user.user_id, email, role: user.role });
         if(Fcm_token&&user.Fcm_token!=Fcm_token){
             await updateFcmToken(user.user_id,Fcm_token);
         }
         const userId=user.user_id;
-        res.json({ message: "User registered successfully", token, userId,role });
+        res.json({ message: "User registered successfully", token, userId,role:user.role });
     } catch (err: any) {
         sendErrorResponse(res, 500, "Error", err.message);
     }
@@ -66,7 +66,8 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     try {
         const { email, password,Fcm_token,role='user' } = req.body;
         const normalizedRole = role?.toLowerCase();
-
+console.log("signUp called with role: ", normalizedRole);
+        
         if (!email || !password) {
             sendErrorResponse(res, 400, "Cannot signup", "Missing email , password or Fcm_token");
              return;
@@ -93,7 +94,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
         const { userId } = await createUser(email, hashedPassword,Fcm_token,normalizedRole);
 
-        const token = generateToken({ user_id: userId, email ,role:role});
+        const token = generateToken({ user_id: userId, email, role: normalizedRole });
 
         const verificationToken = await createEmailVerificationToken(userId);
 

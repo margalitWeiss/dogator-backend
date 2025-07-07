@@ -47,7 +47,6 @@ app.use("/api/blockUser",blockUserRouter)
 app.use("/api/availability", availabilityRouter);
 app.use("/api/badges",badgesRouter)
 app.use("/api/favoriteDogs",favoriteDogsRouter)
-app.use("/api/personalStatistics",personalStatisticsRouter)
 
 let port = process.env.PORT ? Number(process.env.PORT) : 3306;
 

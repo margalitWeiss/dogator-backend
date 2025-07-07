@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dogator Project - Functions & Endpoints Summary</title>
+    <style>
+        body { font-family: Arial, sans-serif; direction: ltr; background: #f9f9f9; color: #222; }
+        h1 { color: #2c3e50; }
+        h2 { color: #2980b9; margin-top: 2em; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 2em; background: #fff; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background: #eaf1fb; }
+        tr:nth-child(even) { background: #f4f8fb; }
+        .file-path { color: #888; font-size: 0.9em; }
+        .route { color: #16a085; font-weight: bold; }
+        .param { color: #8e44ad; }
+        .return { color: #c0392b; }
+    </style>
+</head>
+<body>
+    <h1>Dogator Backend - Functions & Endpoints Summary</h1>
+    <p>This page summarizes all main functions and API endpoints in the project, including the route, parameters, parameter source, and return value.</p>
+    <div id="functions-summary">
+        <!-- Summary will be inserted here -->
+    </div>
+    <h2>All Endpoints by Router File</h2>
+    <h3>dogs.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>GET</td><td>/api/dogs/nearby</td><td>getNearbyDogs</td><td>—</td><td>—</td><td>controllers/dogs.ts</td></tr>
+        <tr><td>GET</td><td>/api/dogs/</td><td>searchDogsByLocation</td><td>query params</td><td>query</td><td>controllers/dogs.ts</td></tr>
+        <tr><td>POST</td><td>/api/dogs/</td><td>addDog</td><td>Dog details</td><td>body</td><td>controllers/dogs.ts</td></tr>
+        <tr><td>GET</td><td>/api/dogs/:id</td><td>getDogByID</td><td>id</td><td>params</td><td>controllers/dogs.ts</td></tr>
+        <tr><td>PUT</td><td>/api/dogs/:id</td><td>updateDogByID</td><td>id, update details</td><td>params, body</td><td>controllers/dogs.ts</td></tr>
+        <tr><td>DELETE</td><td>/api/dogs/:id</td><td>deleteDogById</td><td>id</td><td>params</td><td>controllers/dogs.ts</td></tr>
+        <tr><td>PUT</td><td>/api/dogs/pictures/:id</td><td>updatePicturePlace</td><td>id, picture</td><td>params, body</td><td>controllers/dogs.ts</td></tr>
+    </table>
+    <h3>user.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>POST</td><td>/api/user/auth/login</td><td>login</td><td>email, password</td><td>body</td><td>controllers/users.ts</td></tr>
+        <tr><td>POST</td><td>/api/user/auth/signup</td><td>signUp</td><td>email, password, ...</td><td>body</td><td>controllers/users.ts</td></tr>
+        <tr><td>GET</td><td>/api/user/:id</td><td>getUserById</td><td>id</td><td>params</td><td>controllers/users.ts</td></tr>
+        <tr><td>GET</td><td>/api/user/me</td><td>getUserById</td><td>—</td><td>auth</td><td>controllers/users.ts</td></tr>
+        <tr><td>DELETE</td><td>/api/user/:id</td><td>deleteUserById</td><td>id</td><td>params</td><td>controllers/users.ts</td></tr>
+        <tr><td>PUT</td><td>/api/user/:id</td><td>updateUser</td><td>id, update details</td><td>params, body</td><td>controllers/users.ts</td></tr>
+        <tr><td>POST</td><td>/api/user/auth/logout</td><td>logout</td><td>token</td><td>auth</td><td>controllers/users.ts</td></tr>
+        <tr><td>DELETE</td><td>/api/user/me</td><td>deleteUser</td><td>token</td><td>auth</td><td>controllers/users.ts</td></tr>
+    </table>
+    <h3>Playdates.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>POST</td><td>/api/playdates/</td><td>createPlaydate</td><td>Playdate details</td><td>body</td><td>controllers/Playdates.ts</td></tr>
+        <tr><td>DELETE</td><td>/api/playdates/:id</td><td>deleteMeetingById</td><td>id</td><td>params</td><td>controllers/Playdates.ts</td></tr>
+        <tr><td>PUT</td><td>/api/playdates/:id</td><td>updateMeetingByID</td><td>id, update details</td><td>params, body</td><td>controllers/Playdates.ts</td></tr>
+        <tr><td>GET</td><td>/api/playdates/:user_id</td><td>getAllMeetingsWithFilters</td><td>user_id, filter</td><td>params, query</td><td>controllers/Playdates.ts</td></tr>
+    </table>
+    <h3>reports.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>POST</td><td>/api/reports/</td><td>submitReport</td><td>reported_by, ...</td><td>body</td><td>controllers/reports.ts</td></tr>
+        <tr><td>GET</td><td>/api/reports/getAllReports</td><td>getAllReports</td><td>—</td><td>—</td><td>controllers/reports.ts</td></tr>
+        <tr><td>PUT</td><td>/api/reports/updateReport/:id</td><td>updateReport</td><td>id, update details</td><td>params, body</td><td>controllers/reports.ts</td></tr>
+        <tr><td>PUT</td><td>/api/reports/blockUserByAdmin/:id</td><td>blockUserByAdmin</td><td>id</td><td>params</td><td>controllers/reports.ts</td></tr>
+        <tr><td>PUT</td><td>/api/reports/unblockUserByAdmin/:id</td><td>unblockUserByAdmin</td><td>id</td><td>params</td><td>controllers/reports.ts</td></tr>
+        <tr><td>GET</td><td>/api/reports/filter</td><td>getFilteredReportsController</td><td>query params</td><td>query</td><td>controllers/reports.ts</td></tr>
+    </table>
+    <h3>badges.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>POST</td><td>/api/badges/</td><td>addBadgeController</td><td>name, color</td><td>body</td><td>controllers/badges.ts</td></tr>
+        <tr><td>GET</td><td>/api/badges/</td><td>getBadgeController</td><td>—</td><td>—</td><td>controllers/badges.ts</td></tr>
+        <tr><td>PUT</td><td>/api/badges/:badgeId</td><td>updateBadgeController</td><td>badgeId, name, color</td><td>params, body</td><td>controllers/badges.ts</td></tr>
+        <tr><td>POST</td><td>/api/badges/:userId/:badgeId</td><td>addBadgeForUserController</td><td>userId, badgeId</td><td>params</td><td>controllers/badges.ts</td></tr>
+        <tr><td>DELETE</td><td>/api/badges/:badgeId</td><td>deleteBadgeController</td><td>badgeId</td><td>params</td><td>controllers/badges.ts</td></tr>
+        <tr><td>GET</td><td>/api/badges/:id/badges</td><td>getBadgeForUserController</td><td>id</td><td>params</td><td>controllers/badges.ts</td></tr>
+    </table>
+    <h3>availability.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>PUT</td><td>/api/availability/</td><td>updateUserAvailability</td><td>slots, delete_slot_ids</td><td>body</td><td>controllers/availability.ts</td></tr>
+        <tr><td>GET</td><td>/api/availability/:userId</td><td>getUserAvailability</td><td>userId</td><td>params</td><td>controllers/availability.ts</td></tr>
+    </table>
+    <h3>breedsRouter.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>GET</td><td>/api/breeds/</td><td>getBreedsWithSize</td><td>—</td><td>—</td><td>controllers/breedsController.ts</td></tr>
+    </table>
+    <h3>SystemStatisticAPI.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>GET</td><td>/api/statistics/admin/stats</td><td>getStatisticalReport</td><td>—</td><td>—</td><td>controllers/SystemStatisticsAPI.ts</td></tr>
+    </table>
+    <h3>favoriteDogsRouter.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>POST</td><td>/api/favoriteDogs/</td><td>addFavoriteDogForUser</td><td>user_id, dog_id</td><td>body</td><td>controllers/usersFavoriteDogsController.ts</td></tr>
+        <tr><td>DELETE</td><td>/api/favoriteDogs/</td><td>removeFavoriteDogForUser</td><td>user_id, dog_id</td><td>body</td><td>controllers/usersFavoriteDogsController.ts</td></tr>
+    </table>
+    <h3>verifyEmail.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>GET</td><td>/api/verify-email/</td><td>verifyEmail</td><td>token</td><td>query</td><td>controllers/verifyEmail.ts</td></tr>
+    </table>
+    <h3>admin.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>GET</td><td>/api/admin/flagged-users/openReportedUsers</td><td>openReportedUsers</td><td>—</td><td>—</td><td>controllers/adminController.ts</td></tr>
+        <tr><td>GET</td><td>/api/admin/flagged-users/blockedUsers</td><td>getBlockedUsers</td><td>—</td><td>—</td><td>controllers/adminController.ts</td></tr>
+    </table>
+    <h3>chatRouter.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>GET</td><td>/api/chat/countMessages/:userId</td><td>countMessagesController</td><td>userId</td><td>params</td><td>controllers/chatController.ts</td></tr>
+        <tr><td>POST</td><td>/api/chat/</td><td>postMessage</td><td>—</td><td>body</td><td>controllers/chatController.ts</td></tr>
+        <tr><td>GET</td><td>/api/chat/</td><td>getMessages</td><td>query params</td><td>query</td><td>controllers/chatController.ts</td></tr>
+        <tr><td>GET</td><td>/api/chat/user-chats</td><td>getChatsForUser</td><td>—</td><td>auth</td><td>controllers/chatController.ts</td></tr>
+    </table>
+    <h3>feedbackReply.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>POST</td><td>/api/addFeedbackReply/admin/feedback/:id/reply</td><td>addFeedbackReply</td><td>id, content</td><td>params, body</td><td>controllers/feedbackReply.ts</td></tr>
+        <tr><td>GET</td><td>/api/addFeedbackReply/feedback/:user_id/reply</td><td>getFeedbackReplyByID</td><td>user_id</td><td>params</td><td>controllers/feedbackReply.ts</td></tr>
+    </table>
+    <h3>managingListsForAdmin.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>POST</td><td>/api/ManagementList/breeds</td><td>createBreed</td><td>name, size</td><td>body</td><td>controllers/managingListsForAdmin.ts</td></tr>
+        <tr><td>DELETE</td><td>/api/ManagementList/breeds/:id</td><td>deleteBreedById</td><td>id</td><td>params</td><td>controllers/managingListsForAdmin.ts</td></tr>
+        <tr><td>PUT</td><td>/api/ManagementList/breeds/:id</td><td>updateBreed</td><td>id, update details</td><td>params, body</td><td>controllers/managingListsForAdmin.ts</td></tr>
+        <tr><td>PUT</td><td>/api/ManagementList/users/:id/role</td><td>UserAuthority</td><td>id, role</td><td>params, body</td><td>controllers/managingListsForAdmin.ts</td></tr>
+        <tr><td>GET</td><td>/api/ManagementList/users</td><td>getUserByPagination</td><td>query params</td><td>query</td><td>controllers/managingListsForAdmin.ts</td></tr>
+        <tr><td>GET</td><td>/api/ManagementList/breeds</td><td>getBreedsWithSize</td><td>—</td><td>—</td><td>controllers/breedsController.ts</td></tr>
+    </table>
+    <h3>notificationRoutes.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>POST</td><td>/notifications/</td><td>sendNotification</td><td>—</td><td>body</td><td>controllers/notificationController.ts</td></tr>
+    </table>
+    <h3>personalStatisticsRouter.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>GET</td><td>/api/personalStatistics/cntPlaydates/:userId</td><td>getCntInvitedPlaydates</td><td>userId</td><td>params</td><td>controllers/personalStatistics.ts</td></tr>
+        <tr><td>GET</td><td>/api/personalStatistics/cntConfirmedPlaydates/:userId</td><td>getCntConfirmedPlaydates</td><td>userId</td><td>params</td><td>controllers/personalStatistics.ts</td></tr>
+        <tr><td>GET</td><td>/api/personalStatistics/cntChats/:userId</td><td>getCntChatMessages</td><td>userId</td><td>params</td><td>controllers/personalStatistics.ts</td></tr>
+        <tr><td>GET</td><td>/api/personalStatistics/cntDogsProfile/:userId</td><td>getCntDogsProfiles</td><td>userId</td><td>params</td><td>controllers/personalStatistics.ts</td></tr>
+    </table>
+    <h3>playdateStatus.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>PUT</td><td>/api/playdateStatus/:id</td><td>playdateStatus</td><td>id, update details</td><td>params, body</td><td>controllers/playdateStatus.ts</td></tr>
+    </table>
+    <h3>blockUser.ts</h3>
+    <table>
+        <tr><th>HTTP</th><th>Full Path</th><th>Function Name</th><th>Parameters</th><th>Parameter Source</th><th>File</th></tr>
+        <tr><td>POST</td><td>/api/blockUser/:blockerUserId/:blockedUserId</td><td>blockUser</td><td>blockerUserId, blockedUserId</td><td>params</td><td>controllers/userBlockUser.ts</td></tr>
+        <tr><td>DELETE</td><td>/api/blockUser/:blockerUserId/:blockedUserId</td><td>unBlokingUser</td><td>blockerUserId, blockedUserId</td><td>params</td><td>controllers/userBlockUser.ts</td></tr>
+        <tr><td>GET</td><td>/api/blockUser/myBlocked/:userId</td><td>getMyBlockedUsers</td><td>userId</td><td>params</td><td>controllers/userBlockUser.ts</td></tr>
+    </table>
+</body>
+</html>

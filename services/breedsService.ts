@@ -8,10 +8,11 @@ interface Breed {
 
 export const getBreedsAndSize = async (): Promise<Breed[]> => {
     try {
-        const [rows] = await pool.query<RowDataPacket[]>("SELECT  name,size FROM breeds");
+        const [rows] = await pool.query<RowDataPacket[]>("SELECT  breed_id,name,size FROM breeds");
 
         
         const breeds: Breed[] = rows.map((row) => ({
+            id: row.breed_id,
             name: row.name,
             size: row.size,
         }));

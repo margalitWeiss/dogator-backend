@@ -10,7 +10,6 @@ const router = express.Router();
 
 router.get("/nearby",checkAuth as middlewareH, getNearbyDogs as RouteHandler);
 router.get("/",searchDogsByLocation)
-router.get("/nearby",checkAuth as middlewareH, getNearbyDogs as RouteHandler);
 router.post("/",checkAuth as middlewareH, addDog as RouteHandler);
 router.get("/:id",checkAuth as middlewareH, getDogByID as RouteHandler);
 router.put("/:id",checkAuth as middlewareH, updateDogByID as RouteHandler);

@@ -21,7 +21,7 @@ export const updateLastActive = async (email: string) => {
 
     export const updateFcmToken = async (userId: string, fncToken: string) => {
 
-        const query = "UPDATE Users SET Fcm_token = ? WHERE user_id = ?";
+        const query = "UPDATE users SET Fcm_token = ? WHERE user_id = ?";
     
         try {
             await pool.execute(query, [fncToken, userId]);

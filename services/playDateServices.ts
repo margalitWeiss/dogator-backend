@@ -28,7 +28,7 @@ export async function getPlaydatesForToday(date: Date): Promise<Playdate[]> {
 
 export const deletePlayDatesById=async(user_id:string)=>{
     try{
-    const query="DELETE FROM playDates WHERE host_user_id=? OR participant_user_id =?";
+    const query="DELETE FROM playdates WHERE host_user_id=? OR participant_user_id =?";
     await pool.execute(query,[user_id,user_id])
     console.log(`All PlayDate for user ${user_id} deleted.`);
 

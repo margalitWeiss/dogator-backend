@@ -11,6 +11,5 @@ router.post("/",checkAuth as middlewareH, createPlaydate as RouteHandler);
 router.delete("/:id",checkAuth as middlewareH, deleteMeetingById as RouteHandler);
 router.put("/:id",checkAuth as middlewareH, updateMeetingByID as RouteHandler);
 router.get("/:user_id",checkAuth as middlewareH, getAllMeetingsWithFilters as RouteHandler);
-router.get("/:user_id", getAllMeetingsWithFilters as RouteHandler);
 
 export default router;

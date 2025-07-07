@@ -104,7 +104,7 @@ export const createPlaydate = async (req: Request, res: Response, next: NextFunc
             console.log("8")
 
         const sql = `
-            INSERT INTO Playdates (playdate_id,host_user_id, participant_user_id, scheduled_time, status, location,location_string)
+            INSERT INTO playdates (playdate_id,host_user_id, participant_user_id, scheduled_time, status, location,location_string)
             VALUES (?,?, ?, ?, ?, ST_GeomFromText(?),?)
         `;
         const values = [playdateId,host_user_id, participant_user_id, scheduled_time, finalStatus, location,location_string];
@@ -156,14 +156,14 @@ export const getAllMeetingsWithFilters = async (req: Request, res: Response, nex
                 p.*, 
                 (
                     SELECT u.name 
-                    FROM Users u 
+                    FROM users u 
                     WHERE u.user_id = 
                         CASE 
                             WHEN p.host_user_id = ? THEN p.participant_user_id 
                             ELSE p.host_user_id 
                         END
                 ) AS other_user_name
-            FROM Playdates p
+            FROM playdates p
             WHERE (p.host_user_id = ? OR p.participant_user_id = ?)
         `;
 
@@ -209,7 +209,7 @@ export const updateMeetingByID = async (req: Request, res: Response, next: NextF
         const fields = Object.keys(data).map(key => `${key} = ?`).join(", ");
         const values = Object.values(data);
 
-        const sql = `UPDATE Playdates SET ${fields} WHERE playdate_id = ?`;
+        const sql = `UPDATE playdates SET ${fields} WHERE playdate_id = ?`;
         const [result]: any = await pool.query(sql, [...values, id]);
 
         if (result.affectedRows == 0) {
@@ -240,7 +240,7 @@ export const deleteMeetingById = async (req: Request, res: Response, next: NextF
     }
 
     try {
-        const [result]: any = await pool.query("DELETE FROM Playdates WHERE playdate_id = ?", [id]);
+        const [result]: any = await pool.query("DELETE FROM playdates WHERE playdate_id = ?", [id]);
 
         if (result.affectedRows == 0) {
             return res.status(404).json({ title: "not found", message: "no meeting with such id" });
